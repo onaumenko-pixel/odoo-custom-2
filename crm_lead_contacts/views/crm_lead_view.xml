@@ -80,21 +80,17 @@
         <field name="model">crm.lead</field>
         <field name="inherit_id" ref="crm.crm_lead_view_form"/>
         <field name="arch" type="xml">
-            <xpath expr="//page[@name='internal_notes']" position="after">
+            <xpath expr="//notebook/page[last()]" position="after">
                 <page string="Contacts" name="contacts_tab">
                     <field
                         name="contact_ids"
                         mode="kanban"
-                        widget="many2many"
-                        domain="[('type', '=', 'contact'), ('parent_id', '=', partner_id)]"
                         context="{
                             'default_parent_id': partner_id,
                             'default_type': 'contact',
                             'default_company_type': 'person',
-                            'form_view_ref': 'crm_lead_contacts.view_res_partner_contact_inline_form',
-                            'kanban_view_ref': 'crm_lead_contacts.view_res_partner_contact_kanban'
+                            'form_view_ref': 'crm_lead_contacts.view_res_partner_contact_inline_form'
                         }"
-                        options="{'no_create_edit': False, 'create': True}"
                     >
                         <kanban quick_create="false">
                             <field name="name"/>
