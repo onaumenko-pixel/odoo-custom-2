@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
 
-    <!-- Inline form for creating/editing a contact person (opens instead of full res.partner form) -->
+    <!-- Inline form for creating/editing a contact person -->
     <record id="view_res_partner_contact_inline_form" model="ir.ui.view">
         <field name="name">res.partner.contact.inline.form</field>
         <field name="model">res.partner</field>
@@ -54,29 +54,43 @@
                             <field name="image_128"/>
                             <templates>
                                 <t t-name="kanban-box">
-                                    <div class="oe_kanban_global_click o_kanban_record d-flex flex-column align-items-center p-3">
-                                        <img
-                                            t-att-src="kanban_image('res.partner', 'image_128', record.id.raw_value)"
-                                            class="o_kanban_image rounded-circle mb-2"
-                                            style="width:64px; height:64px; object-fit:cover;"
-                                            alt="Contact"
-                                        />
-                                        <strong class="o_kanban_record_title text-center">
-                                            <field name="name"/>
-                                        </strong>
-                                        <span t-if="record.function.value" class="text-muted small text-center">
-                                            <field name="function"/>
-                                        </span>
-                                        <div class="mt-1 text-center">
-                                            <t t-if="record.phone.value">
-                                                <div><i class="fa fa-phone me-1"/><field name="phone"/></div>
-                                            </t>
-                                            <t t-if="record.mobile.value">
-                                                <div><i class="fa fa-mobile me-1"/><field name="mobile"/></div>
-                                            </t>
-                                            <t t-if="record.email.value">
-                                                <div><i class="fa fa-envelope me-1"/><field name="email"/></div>
-                                            </t>
+                                    <div class="oe_kanban_global_click o_kanban_record"
+                                         style="min-width: 300px; padding: 8px 12px;">
+                                        <div class="d-flex align-items-center">
+                                            <!-- Аватар слева -->
+                                            <div style="flex-shrink: 0; margin-right: 12px;">
+                                                <img
+                                                    t-att-src="kanban_image('res.partner', 'image_128', record.id.raw_value)"
+                                                    style="width:48px; height:48px; border-radius:50%; object-fit:cover; background:#e0e0e0;"
+                                                    alt="Contact"
+                                                />
+                                            </div>
+                                            <!-- Данные справа -->
+                                            <div style="flex: 1; min-width: 0;">
+                                                <div style="font-weight: 600; font-size: 13px;">
+                                                    <field name="name"/>
+                                                </div>
+                                                <t t-if="record.function.value">
+                                                    <div style="color: #666; font-size: 12px;">
+                                                        <field name="function"/>
+                                                    </div>
+                                                </t>
+                                                <t t-if="record.phone.value">
+                                                    <div style="font-size: 12px; margin-top: 2px;">
+                                                        Телефон: <field name="phone"/>
+                                                    </div>
+                                                </t>
+                                                <t t-if="record.mobile.value">
+                                                    <div style="font-size: 12px;">
+                                                        <field name="mobile"/>
+                                                    </div>
+                                                </t>
+                                                <t t-if="record.email.value">
+                                                    <div style="font-size: 12px;">
+                                                        <field name="email"/>
+                                                    </div>
+                                                </t>
+                                            </div>
                                         </div>
                                     </div>
                                 </t>
