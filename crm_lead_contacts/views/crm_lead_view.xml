@@ -1,6 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
 
+    <!-- Inline form for creating/editing a contact person -->
+    <record id="view_res_partner_contact_inline_form" model="ir.ui.view">
+        <field name="name">res.partner.contact.inline.form</field>
+        <field name="model">res.partner</field>
+        <field name="arch" type="xml">
+            <form string="Contact Person">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name" string="Назва контакту"/>
+                            <field name="function" string="Посада"/>
+                            <field name="phone"/>
+                            <field name="mobile"/>
+                            <field name="email"/>
+                        </group>
+                        <group>
+                            <field name="parent_id" string="Company" readonly="1"/>
+                            <field name="type" invisible="1"/>
+                            <field name="company_type" invisible="1"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
     <!-- Contacts tab injected into the CRM lead form -->
     <record id="crm_lead_contacts_form_view" model="ir.ui.view">
         <field name="name">crm.lead.contacts.form</field>
@@ -15,7 +41,8 @@
                         context="{
                             'default_parent_id': partner_id,
                             'default_type': 'contact',
-                            'default_company_type': 'person'
+                            'default_company_type': 'person',
+                            'form_view_ref': 'crm_lead_contacts.view_res_partner_contact_inline_form'
                         }"
                     >
                         <kanban quick_create="false">
