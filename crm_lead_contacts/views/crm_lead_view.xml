@@ -51,50 +51,30 @@
                             <field name="phone"/>
                             <field name="mobile"/>
                             <field name="email"/>
-                            <field name="image_128"/>
+                            <field name="avatar_128"/>
                             <templates>
                                 <t t-name="kanban-box">
-                                    <div class="oe_kanban_global_click o_kanban_record"
-                                         style="min-width: 300px; padding: 8px 12px;">
-                                        <div class="d-flex align-items-center">
-                                            <!-- Аватар слева -->
-                                            <div style="flex-shrink: 0; margin-right: 12px;">
-                                                <t t-if="record.image_128.raw_value">
-                                                    <img t-att-src="kanban_image('res.partner', 'image_128', record.id.raw_value)"
-                                                        style="width:48px; height:48px; border-radius:50%; object-fit:cover;"
-                                                        alt="Contact"/>
-                                                </t>
-                                                <t t-else="">
-                                                    <img t-att-src='_s + "/base/static/img/avatar.png"'
-                                                        style="width:48px; height:48px; border-radius:50%; object-fit:cover;"
-                                                        alt="Contact"/>
-                                                </t>
+                                    <div class="oe_kanban_global_click o_kanban_record">
+                                        <div class="d-flex align-items-center p-2">
+                                            <div class="o_kanban_image me-3">
+                                                <img t-att-src="kanban_image('res.partner', 'avatar_128', record.id.raw_value)"
+                                                    style="width:48px; height:48px; border-radius:50%; object-fit:cover;"
+                                                    alt="Contact"/>
                                             </div>
-                                            <!-- Данные справа -->
-                                            <div style="flex: 1; min-width: 0;">
-                                                <div style="font-weight: 600; font-size: 13px;">
-                                                    <field name="name"/>
+                                            <div class="oe_kanban_details">
+                                                <strong><field name="name"/></strong>
+                                                <div t-if="record.function.raw_value" class="text-muted">
+                                                    <field name="function"/>
                                                 </div>
-                                                <t t-if="record.function.value">
-                                                    <div style="color: #666; font-size: 12px;">
-                                                        <field name="function"/>
-                                                    </div>
-                                                </t>
-                                                <t t-if="record.phone.value">
-                                                    <div style="font-size: 12px; margin-top: 2px;">
-                                                        Телефон: <field name="phone"/>
-                                                    </div>
-                                                </t>
-                                                <t t-if="record.mobile.value">
-                                                    <div style="font-size: 12px;">
-                                                        <field name="mobile"/>
-                                                    </div>
-                                                </t>
-                                                <t t-if="record.email.value">
-                                                    <div style="font-size: 12px;">
-                                                        <field name="email"/>
-                                                    </div>
-                                                </t>
+                                                <div t-if="record.phone.raw_value">
+                                                    Телефон: <field name="phone"/>
+                                                </div>
+                                                <div t-if="record.mobile.raw_value">
+                                                    <field name="mobile"/>
+                                                </div>
+                                                <div t-if="record.email.raw_value">
+                                                    <field name="email"/>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
