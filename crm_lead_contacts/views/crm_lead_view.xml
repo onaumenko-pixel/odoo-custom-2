@@ -57,7 +57,7 @@
                                     <div class="oe_kanban_global_click o_kanban_record"
                                          style="background-color: #f8f8f8; box-shadow: 0 2px 6px rgba(0,0,0,0.1); border-radius: 6px; border: 1px solid #e8e8e8;">
                                         <div class="d-flex align-items-center p-2">
-                                            <div class="o_kanban_image me-2">
+                                            <div style="flex-shrink: 0; margin-right: 8px;">
                                                 <img t-att-src="kanban_image('res.partner', 'avatar_128', record.id.raw_value)"
                                                     style="width:64px; height:64px; object-fit:cover;"
                                                     alt="Contact"/>
