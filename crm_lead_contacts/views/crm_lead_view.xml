@@ -34,7 +34,7 @@
         <field name="inherit_id" ref="crm.crm_lead_view_form"/>
         <field name="arch" type="xml">
             <xpath expr="//notebook/page[last()]" position="after">
-                <page string="Contacts" name="contacts_tab">
+                <page string="Контакти та адреси" name="contacts_tab">
                     <field
                         name="contact_ids"
                         mode="kanban"
