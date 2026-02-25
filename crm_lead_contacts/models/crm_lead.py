@@ -6,13 +6,15 @@ class CrmLead(models.Model):
 
     contact_ids = fields.One2many(
         comodel_name='res.partner',
-        compute='_compute_contact_ids',
-        inverse='_inverse_contact_ids',
+        inverse_name='parent_id',
         string='Contacts',
+        domain="[('type', '=', 'contact')]",
+        compute='_compute_contact_ids',
+        readonly=False,
+        store=False,
     )
 
-    @api.depends('partner_id', 'partner_id.child_ids',
-                 'partner_id.child_ids.type')
+    @api.depends('partner_id', 'partner_id.child_ids', 'partner_id.child_ids.type')
     def _compute_contact_ids(self):
         for lead in self:
             if lead.partner_id:
@@ -21,8 +23,3 @@ class CrmLead(models.Model):
                 )
             else:
                 lead.contact_ids = self.env['res.partner']
-
-    def _inverse_contact_ids(self):
-        # Records created via the inline form already have parent_id set
-        # from context (default_parent_id). No additional logic required.
-        pass
