@@ -12,12 +12,12 @@ class CrmLead(models.Model):
     )
 
     @api.depends('partner_id', 'partner_id.child_ids',
-                 'partner_id.child_ids.type', 'partner_id.child_ids.company_type')
+                 'partner_id.child_ids.type')
     def _compute_contact_ids(self):
         for lead in self:
             if lead.partner_id:
                 lead.contact_ids = lead.partner_id.child_ids.filtered(
-                    lambda p: p.company_type == 'person' and p.type == 'contact'
+                    lambda p: p.type == 'contact'
                 )
             else:
                 lead.contact_ids = self.env['res.partner']
