@@ -86,7 +86,7 @@
                         name="contact_ids"
                         mode="kanban"
                         widget="many2many"
-                        domain="[('company_type', '=', 'person'), ('type', '=', 'contact')]"
+                        domain="[('type', '=', 'contact'), ('parent_id', '=', partner_id)]"
                         context="{
                             'default_parent_id': partner_id,
                             'default_type': 'contact',
