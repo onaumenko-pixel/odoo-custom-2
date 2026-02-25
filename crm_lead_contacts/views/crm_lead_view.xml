@@ -10,8 +10,8 @@
                 <sheet>
                     <group>
                         <group>
-                            <field name="name" string="Full Name"/>
-                            <field name="function" string="Job Position"/>
+                            <field name="name" string="Назва контакту"/>
+                            <field name="function" string="Посада"/>
                             <field name="phone"/>
                             <field name="mobile"/>
                             <field name="email"/>
